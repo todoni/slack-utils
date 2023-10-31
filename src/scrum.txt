@@ -1,3 +1,4 @@
+@channel
 1. How is your condition today? (??/100)
  
 
