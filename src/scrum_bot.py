@@ -8,4 +8,4 @@ def run_scrum_bot():
     slack = slack_api.slack_api(token)
     channel_name = os.environ.get("SCRUM_CHANNEL_NAME")
     channel_id = slack.get_channel_id("daily-scrum", "private_channel")
-    slack.post_thread(channel_id, "test")
+    slack.post_thread(channel_id, "음하하 스크럼을 쓰거라")
