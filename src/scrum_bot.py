@@ -8,6 +8,7 @@ def run_scrum_bot():
     slack = slack_api.slack_api(token)
     channel_name = os.environ.get("SCRUM_CHANNEL_NAME")
     channel_id = slack.get_channel_id("daily-scrum", "private_channel")
-    scrum_file = open("scrum.txt")
+    file_path = os.environ.get("SCRUM_FILE_PATH")
+    scrum_file = open(file_path)
     scrum_text = scrum_file.read()
     slack.post_thread(channel_id, scrum_text)
