@@ -1,7 +1,7 @@
 name: scrum-bot
-on:
-  schedule:
-    - cron: '* * * * *'
+on: push
+  #schedule:
+  #  - cron: '* * * * *'
 
 jobs:
   post_scrum_message:
