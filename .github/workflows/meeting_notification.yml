@@ -1,10 +1,7 @@
 name:
 on:
   schedule:
-    - cron: "00 8 * * 0"
-  push:
-    branches:
-      - main
+    - cron: "00 8 * * 0" # Every sunday PM 5:00 KST
 
 jobs:
   post_meeting_notification:
