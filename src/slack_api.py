@@ -20,13 +20,18 @@ class slack_api:
         result = self.client.conversations_members(channel=channel_id)
         members_id = result.data['members']
         scrum_bot_id = os.environ.get("SCRUM_BOT_ID")
+        github_bot_id = os.environ.get("APP_GITHUB_BOT_ID")
         members_id.remove(scrum_bot_id)
-        members_display_name = []
+        members_id.remove(github_bot_id)
+        members_name = []
         for member_id in members_id:
             result = self.client.users_profile_get(user=member_id)
-            display_name = result.data['profile']['display_name']
-            members_display_name.append(display_name)
-        return members_display_name
+            profile = result.data['profile']
+            name = profile['display_name']
+            if name == '':
+                name = profile['real_name']
+            members_name.append(name)
+        return members_name
 
     def post_thread(self, channel_id, text):
         result = self.client.chat_postMessage(
