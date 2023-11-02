@@ -14,6 +14,21 @@ class slack_api:
         channel_id = channel["id"]
         return channel_id
 
+    def get_channel_members(self, channel_id):
+        result = self.client.conversations_members(channel=channel_id)
+        members_id = result.data['members']
+        members_display_name = []
+        for member_id in members_id:
+            print("??????????", member_id)
+            result = self.client.users_profile_get(id=member_id)
+            members_display_name.append(result)
+        print("*********")
+        for name in members_display_name:
+            print(name)
+        # print(result)
+
+        return result
+
     def post_thread(self, channel_id, text):
         result = self.client.chat_postMessage(
             channel=channel_id,
