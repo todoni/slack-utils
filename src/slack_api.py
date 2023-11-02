@@ -1,3 +1,5 @@
+import os
+
 from slack_sdk import WebClient
 
 
@@ -17,17 +19,14 @@ class slack_api:
     def get_channel_members(self, channel_id):
         result = self.client.conversations_members(channel=channel_id)
         members_id = result.data['members']
+        scrum_bot_id = os.environ.get("SCRUM_BOT_ID")
+        members_id.remove(scrum_bot_id)
         members_display_name = []
         for member_id in members_id:
-            print("??????????", member_id)
-            result = self.client.users_profile_get(id=member_id)
-            members_display_name.append(result)
-        print("*********")
-        for name in members_display_name:
-            print(name)
-        # print(result)
-
-        return result
+            result = self.client.users_profile_get(user=member_id)
+            display_name = result.data['profile']['display_name']
+            members_display_name.append(display_name)
+        return members_display_name
 
     def post_thread(self, channel_id, text):
         result = self.client.chat_postMessage(
