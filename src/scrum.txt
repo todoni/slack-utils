@@ -1,8 +1,0 @@
-<!channel> Today's Scrum :sparkles:
-1. How is your condition today? (??/100)
-
-2. What did you do since yesterday?
-
-3. What do you plan to do today?
-
-4. Anything blocking your progress?
