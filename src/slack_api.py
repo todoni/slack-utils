@@ -20,9 +20,9 @@ class slack_api:
         result = self.client.conversations_members(channel=channel_id)
         members_id = result.data['members']
         scrum_bot_id = os.environ.get("SCRUM_BOT_ID")
-        github_bot_id = os.environ.get("APP_GITHUB_BOT_ID")
+        #github_bot_id = os.environ.get("APP_GITHUB_BOT_ID")
         members_id.remove(scrum_bot_id)
-        members_id.remove(github_bot_id)
+        #members_id.remove(github_bot_id)
         members_name = []
         for member_id in members_id:
             result = self.client.users_profile_get(user=member_id)
