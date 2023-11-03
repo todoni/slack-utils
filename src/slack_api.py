@@ -22,7 +22,7 @@ class slack_api:
         scrum_bot_id = os.environ.get("SCRUM_BOT_ID")
         github_bot_id = os.environ.get("APP_GITHUB_BOT_ID")
         members_id.remove(scrum_bot_id)
-        #members_id.remove(github_bot_id)
+        members_id.remove(github_bot_id)
         members_name = []
         for member_id in members_id:
             result = self.client.users_profile_get(user=member_id)
@@ -32,7 +32,6 @@ class slack_api:
             if name == '':
                 name = profile['real_name']
             members_name.append(name)
-        members_id.remove(github_bot_id)
         return members_name
 
     def post_thread(self, channel_id, text):
