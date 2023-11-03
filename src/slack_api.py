@@ -21,8 +21,6 @@ class slack_api:
         members_id = result.data['members']
         scrum_bot_id = os.environ.get("SCRUM_BOT_ID")
         github_bot_id = os.environ.get("APP_GITHUB_BOT_ID")
-        print(members_id)
-        print(github_bot_id)
         members_id.remove(scrum_bot_id)
         members_id.remove(github_bot_id)
         members_name = []
