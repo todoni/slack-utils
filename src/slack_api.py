@@ -55,6 +55,11 @@ class slack_api:
         )
         return result
 
+    def post_interactive_message(self, payload):
+        result = self.client.chat_postMessage(
+            as_user=True, channel="test-bot", blocks=payload)
+        return result
+
     def send_DM(self, member_id, text):
         result = self.client.chat_postMessage(
             channel=member_id,

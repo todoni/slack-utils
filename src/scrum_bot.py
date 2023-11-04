@@ -5,7 +5,7 @@ from flask import Blueprint, Flask, jsonify, request
 import slack_api
 
 
-class scrum_bot(Flask):
+class scrum_bot():
     def __init__(self, *args, **kwargs):
         super(scrum_bot, self).__init__(*args, **kwargs)
         self.initialize()
