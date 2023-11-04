@@ -10,12 +10,12 @@ class scrum_bot(Flask):
         super(scrum_bot, self).__init__(*args, **kwargs)
         self.initialize()
 
-    def initialize():
+    def initialize(self):
         initialize_member_variables()
         initialize_route()
         initialize_interactive_handlers()
 
-    def initialize_member_variables():
+    def initialize_member_variables(self):
         token = os.environ.get('SLACK_BOT_USER_OAUTH_TOKEN')
         # channel_name = os.environ.get("SCRUM_CHANNEL_NAME")
         channel_name = "test-bot"
@@ -25,13 +25,13 @@ class scrum_bot(Flask):
             channel_name, "public_channel, private_channel")
         self.scrum_payload_init = scrum_file.read()
 
-    def initialize_interactive_handlers():
+    def initialize_interactive_handlers(self):
         self.interactive_handlers = {
             'send-scrum-to-members': self.send_scrum_to_members,
             'post-scrum-to-channel': self.post_scrum_to_channel,
         }
 
-    def initialize_route():
+    def initialize_route(self):
         self.interactive_bp = Blueprint(
             'interactive', __name__, url_prefix='/interactive')
 
@@ -53,7 +53,7 @@ class scrum_bot(Flask):
 
     # def send_scrum_to_members(self):
 
-    def run_scrum_bot():
+    def run_scrum_bot(self):
         body = {
             "type": "send_scrum_to_members",
             "payload": self.scrum_payload_init
