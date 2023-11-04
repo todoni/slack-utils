@@ -11,9 +11,9 @@ class scrum_bot(Flask):
         self.initialize()
 
     def initialize(self):
-        initialize_member_variables()
-        initialize_route()
-        initialize_interactive_handlers()
+        self.initialize_member_variables()
+        self.initialize_route()
+        self.initialize_interactive_handlers()
 
     def initialize_member_variables(self):
         token = os.environ.get('SLACK_BOT_USER_OAUTH_TOKEN')
