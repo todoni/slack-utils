@@ -17,10 +17,12 @@ class scrum_bot(Flask):
 
     def initialize_member_variables():
         token = os.environ.get('SLACK_BOT_USER_OAUTH_TOKEN')
-        channel_name = os.environ.get("SCRUM_CHANNEL_NAME")
+        # channel_name = os.environ.get("SCRUM_CHANNEL_NAME")
+        channel_name = "test-bot"
         scrum_file = open("scrum_payload.json")
         self.slack = slack_api.slack_api(token)
-        self.channel_id = slack.get_channel_id(channel_name, "private_channel")
+        self.channel_id = slack.get_channel_id(
+            channel_name, "public_channel, private_channel")
         self.scrum_payload_init = scrum_file.read()
 
     def initialize_interactive_handlers():
@@ -46,6 +48,7 @@ class scrum_bot(Flask):
             response = handler(post_data)
             return jsonify(response)
         else:
+            print("*************************************\n", response)
             return jsonify({"error": "Unknown interactive type"})
 
     # def send_scrum_to_members(self):

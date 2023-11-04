@@ -1,9 +1,9 @@
 name: scrum-bot
-on: 
-  schedule:
-    - cron: "30 7 * * *"
-  workflow_dispatch:
-  
+on:
+  push
+  #schedule:
+  #  - cron: "30 7 * * *"
+  #workflow_dispatch:
 
 jobs:
   post_scrum_message:
