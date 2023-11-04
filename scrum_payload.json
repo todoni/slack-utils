@@ -1,0 +1,80 @@
+{
+  "blocks": [
+    {
+      "type": "rich_text",
+      "elements": [
+        {
+          "type": "rich_text_section",
+          "elements": [
+            {
+              "type": "text",
+              "text": "Today's Scrum has arrived! "
+            },
+            {
+              "type": "emoji",
+              "name": "love_letter"
+            }
+          ]
+        },
+        {
+          "type": "rich_text_list",
+          "style": "ordered",
+          "elements": [
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "How is your condition today? (??/100)"
+                }
+              ]
+            },
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "What did you do since yesterday?"
+                }
+              ]
+            },
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "What do you plan to do today?"
+                }
+              ]
+            },
+            {
+              "type": "rich_text_section",
+              "elements": [
+                {
+                  "type": "text",
+                  "text": "Anything blocking your progress?"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "Submit",
+            "emoji": true
+          },
+          "value": "submit_scrum_to_channel",
+          "action_id": "button",
+          "url": "https://onedegreelabs.slack.com/interactive/scrum/send-to-channel"
+        }
+      ]
+    }
+  ]
+}
