@@ -16,27 +16,48 @@ class slack_api:
         channel_id = channel["id"]
         return channel_id
 
-    def get_channel_members(self, channel_id):
+    def get_member_name_by_id(self, member_id):
+        result = self.client.users_profile_get(user=member_id)
+        profile = result.data['profile']
+        print(member_id, profile)
+        name = profile['display_name']
+        if name == '':
+            name = profile['real_name']
+        return name
+
+    def get_channel_member_ids(self, channel_id):
         result = self.client.conversations_members(channel=channel_id)
-        members_id = result.data['members']
+        member_ids = result.data['members']
         scrum_bot_id = os.environ.get("SCRUM_BOT_ID")
         github_bot_id = os.environ.get("APP_GITHUB_BOT_ID")
-        members_id.remove(scrum_bot_id)
-        members_id.remove(github_bot_id)
-        members_name = []
-        for member_id in members_id:
+        if scrum_bot_id != "":
+            member_ids.remove(scrum_bot_id)
+        if github_bot_id != "":
+            member_ids.remove(github_bot_id)
+        return member_ids
+
+    def get_channel_member_names(self, member_ids):
+        member_names = []
+        for member_id in member_ids:
             result = self.client.users_profile_get(user=member_id)
             profile = result.data['profile']
             print(member_id, profile)
             name = profile['display_name']
             if name == '':
                 name = profile['real_name']
-            members_name.append(name)
-        return members_name
+            member_names.append(name)
+        return member_names
 
     def post_thread(self, channel_id, text):
         result = self.client.chat_postMessage(
             channel=channel_id,
             text=text,
+        )
+        return result
+
+    def send_DM(self, member_id, text):
+        result = self.client.chat_postMessage(
+            channel=member_id,
+            text=text
         )
         return result
