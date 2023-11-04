@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 
-import scrum_bot
+from scrum_bot import scrum_bot
 
 load_dotenv()
 
