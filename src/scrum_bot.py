@@ -8,7 +8,7 @@ import slack_api
 class scrum_bot(Flask):
     def __init__(self, *args, **kwargs):
         super(scrum_bot, self).__init__(*args, **kwargs)
-        initialize()
+        self.initialize()
 
     def initialize():
         initialize_member_variables()
@@ -64,8 +64,3 @@ class scrum_bot(Flask):
             return {"response": "Successfully sent scrum to members"}
         else:
             return {"error": "Failed to send scrum to members"}
-
-
-if __name__ == '__main__':
-    app = scrum_bot(__name__)
-    app.run(port=3000)
