@@ -51,7 +51,11 @@ class scrum_bot(Flask):
             print("*************************************\n", response)
             return jsonify({"error": "Unknown interactive type"})
 
-    # def send_scrum_to_members(self):
+    def send_scrum_to_members(self):
+        pass
+
+    def post_scrum_to_channel(self):
+        pass
 
     def run_scrum_bot(self):
         body = {
