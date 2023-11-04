@@ -21,7 +21,7 @@ class scrum_bot(Flask):
         channel_name = "test-bot"
         scrum_file = open("scrum_payload.json")
         self.slack = slack_api.slack_api(token)
-        self.channel_id = slack.get_channel_id(
+        self.channel_id = self.slack.get_channel_id(
             channel_name, "public_channel, private_channel")
         self.scrum_payload_init = scrum_file.read()
 
