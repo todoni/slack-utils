@@ -1,0 +1,93 @@
+{
+  "type": "modal",
+  "title": {
+    "type": "plain_text",
+    "text": "My App",
+    "emoji": true
+  },
+  "submit": {
+    "type": "plain_text",
+    "text": "Submit",
+    "emoji": true
+  },
+  "close": {
+    "type": "plain_text",
+    "text": "Cancel",
+    "emoji": true
+  },
+  "blocks": [
+    {
+      "type": "rich_text",
+      "elements": [
+        {
+          "type": "rich_text_section",
+          "elements": [
+            {
+              "type": "text",
+              "text": "Hello there, I am a basic rich text block!"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "input",
+      "element": {
+        "type": "rich_text_input",
+        "action_id": "rich_text_input-action",
+        "initial_value": {
+          "type": "rich_text",
+          "elements": [
+            {
+              "type": "rich_text_list",
+              "style": "ordered",
+              "elements": [
+                {
+                  "type": "rich_text_section",
+                  "elements": [
+                    {
+                      "type": "text",
+                      "text": "How is your condition today? (??/100)\n"
+                    }
+                  ]
+                },
+                {
+                  "type": "rich_text_section",
+                  "elements": [
+                    {
+                      "type": "text",
+                      "text": "What did you do since yesterday?\n"
+                    }
+                  ]
+                },
+                {
+                  "type": "rich_text_section",
+                  "elements": [
+                    {
+                      "type": "text",
+                      "text": "What do you plan to do today?\n"
+                    }
+                  ]
+                },
+                {
+                  "type": "rich_text_section",
+                  "elements": [
+                    {
+                      "type": "text",
+                      "text": "Anything blocking your progress?\n"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "Label",
+        "emoji": true
+      }
+    }
+  ]
+}

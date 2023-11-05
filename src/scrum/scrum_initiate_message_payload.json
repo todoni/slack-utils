@@ -1,0 +1,41 @@
+{
+  "blocks": [
+    {
+      "type": "rich_text",
+      "elements": [
+        {
+          "type": "rich_text_section",
+          "elements": [
+            {
+              "type": "text",
+              "text": "Today's Scrum has arrived! "
+            },
+            {
+              "type": "emoji",
+              "name": "love_letter"
+            },
+            {
+              "type": "text",
+              "text": "\n"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "text": "Write Scrum",
+            "emoji": true
+          },
+          "value": "open_scrum_modal",
+          "action_id": "button"
+        }
+      ]
+    }
+  ]
+}

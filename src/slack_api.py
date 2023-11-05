@@ -1,3 +1,5 @@
+import json
+import logging
 import os
 
 from slack_sdk import WebClient
@@ -10,6 +12,7 @@ class slack_api:
     def get_channel_id(self, channel_name, channel_types):
         result = self.client.conversations_list(
             types=channel_types)
+        print("*********************************\n", result)
         channels = result.data['channels']
         channel = list(
             filter(lambda c: c["name"] == channel_name, channels))[0]
@@ -28,11 +31,12 @@ class slack_api:
     def get_channel_member_ids(self, channel_id):
         result = self.client.conversations_members(channel=channel_id)
         member_ids = result.data['members']
+        print("memberids", member_ids)
         scrum_bot_id = os.environ.get("SCRUM_BOT_ID")
         github_bot_id = os.environ.get("APP_GITHUB_BOT_ID")
-        if scrum_bot_id != "":
+        if scrum_bot_id in member_ids:
             member_ids.remove(scrum_bot_id)
-        if github_bot_id != "":
+        if github_bot_id in member_ids:
             member_ids.remove(github_bot_id)
         return member_ids
 
@@ -55,9 +59,9 @@ class slack_api:
         )
         return result
 
-    def post_interactive_message(self, payload):
+    def post_interactive_message(self, channel, payload):
         result = self.client.chat_postMessage(
-            as_user=True, channel="test-bot", blocks=payload)
+            as_user=True, channel=channel, blocks=payload)
         return result
 
     def send_DM(self, member_id, text):
@@ -65,4 +69,8 @@ class slack_api:
             channel=member_id,
             text=text
         )
+        return result
+
+    def open_modal(self, payload):
+        result = self.client.views_open(view=payload, trigger_id="test")
         return result
