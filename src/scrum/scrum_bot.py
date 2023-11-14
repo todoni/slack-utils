@@ -2,9 +2,9 @@ import json
 import os
 import sys
 
-import slack_api
 from constants import (SCRUM_INITIATE_FILE_NAME, TEST_CHANNEL_NAME,
                        TYPE_PRIVATE_CHANNEL_ONLY)
+from slack_api import slack_api
 
 
 class scrum_bot():
