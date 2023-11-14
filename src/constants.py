@@ -1,5 +1,5 @@
-TEST_CHANNEL_NAME = "test-bot"
-SCRUM_CHANNEL_NAME = "daily-scrum"
+TEST_CHANNEL_NAME = "testing-slackbot"
+#SCRUM_CHANNEL_NAME = "daily-scrum"
 SCRUM_INITIATE_FILE_NAME = "scrum_initiate_message_payload.json"
 TYPE_PUBLIC_CHANNEL_ONLY = "public_channel"
 TYPE_PRIVATE_CHANNEL_ONLY = "private_channel"

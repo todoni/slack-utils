@@ -3,8 +3,8 @@ import os
 import sys
 
 import slack_api
-from constants import (SCRUM_CHANNEL_NAME, SCRUM_INITIATE_FILE_NAME,
-                       TEST_CHANNEL_NAME, TYPE_PRIVATE_CHANNEL_ONLY)
+from constants import (SCRUM_INITIATE_FILE_NAME, TEST_CHANNEL_NAME,
+                       TYPE_PRIVATE_CHANNEL_ONLY)
 
 
 class scrum_bot():
