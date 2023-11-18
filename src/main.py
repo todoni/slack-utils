@@ -3,8 +3,8 @@ import os
 import sys
 
 import requests
-from dotenv import load_dotenv
 from scrum_bot import scrum_bot
+from dotenv import load_dotenv
 
 import slack_api
 
