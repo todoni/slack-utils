@@ -4,7 +4,7 @@ import sys
 
 import slack_api
 from constants import (SCRUM_INITIATE_FILE_NAME, TEST_CHANNEL_NAME,
-                       TYPE_PRIVATE_CHANNEL_ONLY)
+                       TYPE_PUBLIC_CHANNEL_ONLY)
 
 
 class scrum_bot:
@@ -17,7 +17,7 @@ class scrum_bot:
             SCRUM_INITIATE_FILE_NAME)
         self.__slack_client = slack_api.slack_api(token)
         self.channel_id = self.__slack_client.get_channel_id(
-            TEST_CHANNEL_NAME, TYPE_PRIVATE_CHANNEL_ONLY)
+            TEST_CHANNEL_NAME, TYPE_PUBLIC_CHANNEL_ONLY)
         scrum_initiate_message_json = scrum_initiate_message_file.read()
         self.scrum_initiate_message_payload = json.loads(
             scrum_initiate_message_json).get("blocks", [])
