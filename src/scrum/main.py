@@ -3,10 +3,10 @@ import os
 import sys
 
 import requests
-from scrum_bot import scrum_bot
 from dotenv import load_dotenv
+from scrum_bot import scrum_bot
 
-import slack_api
+from .slack_api import slack_api
 
 load_dotenv()
 
