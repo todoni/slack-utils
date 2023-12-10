@@ -2,10 +2,12 @@ import json
 import os
 import sys
 
-# from .constants import (SCRUM_INITIATE_FILE_NAME, TEST_CHANNEL_NAME,
-#                        TYPE_PUBLIC_CHANNEL_ONLY)
-from ..constants import constants
-from .slack_api import slack_api
+import requests
+from dotenv import load_dotenv
+
+from ..constants.constants import (SCRUM_INITIATE_FILE_NAME, TEST_CHANNEL_NAME,
+                                   TYPE_PUBLIC_CHANNEL_ONLY)
+from ..slack_api.slack_api import slack_api
 
 
 class scrum_bot:
@@ -15,10 +17,10 @@ class scrum_bot:
     def __initialize(self, token):
         # self.token = token
         scrum_initiate_message_file = open(
-            constants.SCRUM_INITIATE_FILE_NAME)
-        self.__slack_client = slack_api.slack_api(token)
+            SCRUM_INITIATE_FILE_NAME)
+        self.__slack_client = slack_api(token)
         self.channel_id = self.__slack_client.get_channel_id(
-            constants.TEST_CHANNEL_NAME, constants.TYPE_PUBLIC_CHANNEL_ONLY)
+            TEST_CHANNEL_NAME, TYPE_PUBLIC_CHANNEL_ONLY)
         scrum_initiate_message_json = scrum_initiate_message_file.read()
         self.scrum_initiate_message_payload = json.loads(
             scrum_initiate_message_json).get("blocks", [])
@@ -34,3 +36,9 @@ class scrum_bot:
         payload['blocks'].pop()
         payload_without_button = jsonify(payload)
         self.slack.post_interactive_message(payload_without_button)
+
+
+if __name__ == '__main__':
+    token = os.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+    bot = scrum_bot(token=token)
+    bot.initiate_scrum()
