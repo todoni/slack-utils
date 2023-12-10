@@ -5,7 +5,7 @@ import os
 from slack_sdk import WebClient
 
 
-class slack_api:
+class slack_client:
     def __init__(self, token):
         self.client = WebClient(token)
 

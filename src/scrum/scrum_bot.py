@@ -5,9 +5,9 @@ import sys
 import requests
 from dotenv import load_dotenv
 
-from ..constants.constants import (SCRUM_INITIATE_FILE_NAME, TEST_CHANNEL_NAME,
-                                   TYPE_PUBLIC_CHANNEL_ONLY)
-from ..slack_api.slack_api import slack_api
+from ..constants.scrum import (SCRUM_INITIATE_FILE_NAME, TEST_CHANNEL_NAME,
+                               TYPE_PUBLIC_CHANNEL_ONLY)
+from ..slack.api import slack_client
 
 
 class scrum_bot:
@@ -18,7 +18,7 @@ class scrum_bot:
         # self.token = token
         scrum_initiate_message_file = open(
             SCRUM_INITIATE_FILE_NAME)
-        self.__slack_client = slack_api(token)
+        self.__slack_client = slack_client(token)
         self.channel_id = self.__slack_client.get_channel_id(
             TEST_CHANNEL_NAME, TYPE_PUBLIC_CHANNEL_ONLY)
         scrum_initiate_message_json = scrum_initiate_message_file.read()
