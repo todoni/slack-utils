@@ -9,6 +9,8 @@ from ..constants.scrum import (SCRUM_INITIATE_FILE_NAME, TEST_CHANNEL_NAME,
                                TYPE_PUBLIC_CHANNEL_ONLY)
 from ..slack.api import slack_client
 
+load_dotenv()
+
 
 class scrum_bot:
     def __init__(self, token):
@@ -40,5 +42,7 @@ class scrum_bot:
 
 if __name__ == '__main__':
     token = os.getenv("SLACK_BOT_USER_OAUTH_TOKEN")
+    print("****************************", token)
+    print(os.environ)
     bot = scrum_bot(token=token)
     bot.initiate_scrum()
