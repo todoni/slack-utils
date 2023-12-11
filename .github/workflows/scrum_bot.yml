@@ -29,5 +29,5 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: run main.py
-        run: python3 src/scrum/main.py
+      - name: run scrumbot script
+        run: python3 -m src.scrum.scrum_bot
