@@ -26,6 +26,13 @@ jobs:
         --region ap-northeast-2 \
         src/lambda s3://s3-sohan-bucket/lambda \
         --delete
+        
+    - name: Update lambda function from s3
+      run: |
+        aws lambda update-function-code \
+        --function-name slack-interactive-handler \
+        --s3-bucket s3-sohan-bucket --s3-key lambda/lambda.zip
+
       # working-directory: ./
     
     #- name: copy file to EC2 instance via ssh connection
