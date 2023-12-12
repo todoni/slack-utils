@@ -11,7 +11,7 @@ jobs:
     steps:
     - name: Checkout source code
       uses: actions/checkout@v3
-
+      
     - name: Zip lambda files
       run: |
         cd src/lambda
@@ -26,7 +26,10 @@ jobs:
         --region ap-northeast-2 \
         src/lambda s3://s3-sohan-bucket/lambda \
         --delete
-        
+
+    - name: Install depencies
+      run: pip install --upgrade boto3
+    
     - name: Update lambda function from s3
       run: |
         aws lambda update-function-code \
