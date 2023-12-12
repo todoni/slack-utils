@@ -11,6 +11,9 @@ jobs:
     steps:
     - name: Checkout source code
       uses: actions/checkout@v3
+
+    - name: Zip lambda files
+      run: zip -r src/lambda.zip src/lambda/
       
     - name: upload to S3
       env:
