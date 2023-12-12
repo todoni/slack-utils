@@ -19,7 +19,7 @@ jobs:
       run: |
         aws s3 sync \
         --region ap-northeast-2 \
-        src/lambda s3://s3-sohan-bucket \
+        /src/lambda s3://s3-sohan-bucket/lambda \
         --delete
       # working-directory: ./
     
