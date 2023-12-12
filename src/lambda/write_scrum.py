@@ -15,14 +15,6 @@ def lambda_handler(event, context):
         # Log the received event
         logger.info(json.dumps(event))
 
-        # body = base64.b64decode(event['body'])
-        # body_str = body.decode('utf-8')
-
-        # Parse the body to extract the payload
-        # body_json = json.loads(body_str)
-        # payload_data = body_json['payload']
-        # logger.info(f"Extracted payload: {payload_data}")
-
         # Slack API endpoint and headers
         url = 'https://slack.com/api/chat.postMessage'
         headers = {
