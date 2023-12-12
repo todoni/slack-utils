@@ -26,11 +26,12 @@ jobs:
         --region ap-northeast-2 \
         src/lambda s3://s3-sohan-bucket/lambda \
         --delete
-
-    - name: Install depencies
-      run: pip install --upgrade boto3
-    
+        
     - name: Update lambda function from s3
+      env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ap-northeast-2
       run: |
         aws lambda update-function-code \
         --function-name slack-interactive-handler \
