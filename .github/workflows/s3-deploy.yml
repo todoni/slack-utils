@@ -19,21 +19,21 @@ jobs:
       run: |
         aws s3 sync \
         --region ap-northeast-2 \
-        lambda s3://s3-sohan-bucket \
+        src/lambda s3://s3-sohan-bucket \
         --delete
       # working-directory: ./
     
-    - name: copy file to EC2 instance via ssh connection
-      uses: appleboy/ssh-action@v1.0.0
-      env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      with:
-          host: ${{ secrets.AWS_EC2_IP }} # 인스턴스 IP
-          username: ${{ secrets.AWS_EC2_USER }} # 우분투 아이디
-          key: ${{ secrets.AWS_EC2_PEM_KEY }} # ec2 instance pem key
-          envs: AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY
-          script: | # 실행할 스크립트
-            rm -rf lambda/
-            aws s3 cp s3://s3-sohan-bucket/ ./lambda/ --recursive      
+    #- name: copy file to EC2 instance via ssh connection
+    #  uses: appleboy/ssh-action@v1.0.0
+    #  env:
+    #      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #  with:
+    #      host: ${{ secrets.AWS_EC2_IP }} # 인스턴스 IP
+    #      username: ${{ secrets.AWS_EC2_USER }} # 우분투 아이디
+    #      key: ${{ secrets.AWS_EC2_PEM_KEY }} # ec2 instance pem key
+    #      envs: AWS_ACCESS_KEY_ID,AWS_SECRET_ACCESS_KEY
+    #      script: | # 실행할 스크립트
+    #        rm -rf lambda/
+    #        aws s3 cp s3://s3-sohan-bucket/ ./lambda/ --recursive      
     
