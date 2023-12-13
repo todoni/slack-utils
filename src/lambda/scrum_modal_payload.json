@@ -1,0 +1,124 @@
+{
+  "type": "modal",
+  "submit": {
+    "type": "plain_text",
+    "text": "Submit",
+    "emoji": true
+  },
+  "close": {
+    "type": "plain_text",
+    "text": "Cancel",
+    "emoji": true
+  },
+  "title": {
+    "type": "plain_text",
+    "text": "Today's Scrum!",
+    "emoji": true
+  },
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "plain_text",
+        "text": ":wave: Hey David!\n\nWe'd love to hear from you how do you feel today and so on.",
+        "emoji": true
+      }
+    },
+    {
+      "type": "divider"
+    },
+    {
+      "type": "input",
+      "element": {
+        "type": "checkboxes",
+        "options": [
+          {
+            "text": {
+              "type": "plain_text",
+              "text": "awful",
+              "emoji": true
+            },
+            "value": "value-0"
+          },
+          {
+            "text": {
+              "type": "plain_text",
+              "text": "bad",
+              "emoji": true
+            },
+            "value": "value-1"
+          },
+          {
+            "text": {
+              "type": "plain_text",
+              "text": "so-so",
+              "emoji": true
+            },
+            "value": "value-2"
+          },
+          {
+            "text": {
+              "type": "plain_text",
+              "text": "good",
+              "emoji": true
+            },
+            "value": "value-3"
+          },
+          {
+            "text": {
+              "type": "plain_text",
+              "text": "awesome",
+              "emoji": true
+            },
+            "value": "value-4"
+          }
+        ],
+        "action_id": "checkboxes-action"
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "1. How is your condition today?",
+        "emoji": true
+      }
+    },
+    {
+      "type": "input",
+      "element": {
+        "type": "plain_text_input",
+        "multiline": true,
+        "action_id": "plain_text_input-action"
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "2. What did you do since yesterday?",
+        "emoji": true
+      }
+    },
+    {
+      "type": "input",
+      "element": {
+        "type": "plain_text_input",
+        "multiline": true,
+        "action_id": "plain_text_input-action"
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "3. What do you plan to do today?",
+        "emoji": true
+      }
+    },
+    {
+      "type": "input",
+      "element": {
+        "type": "plain_text_input",
+        "multiline": true,
+        "action_id": "plain_text_input-action"
+      },
+      "label": {
+        "type": "plain_text",
+        "text": "4. Anything blocking your progress?",
+        "emoji": true
+      }
+    }
+  ]
+}
