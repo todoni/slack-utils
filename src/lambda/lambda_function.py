@@ -19,19 +19,18 @@ def lambda_handler(event, context):
         url = 'https://slack.com/api/chat.postMessage'
         headers = {
             'Authorization': f"Bearer {os.environ['SLACK_BOT_TOKEN']}",
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/x-www-form-urlencoded'
         }
 
         # Slack message payload
-        payload = json.dumps({
+        payload = {
             'channel': 'C04FL23CYNS',
             'text': 'Hello from AWS Lambda!',
-            'response_type': 'in_channel'
-        })
-
+        }
+        payload_encoded = urllib.parse.urlencode(payload).encode('utf-8')
         # Create a request object
         req = urllib.request.Request(
-            url, data=payload, headers=headers, method='POST')
+            url, data=payload_encoded, headers=headers, method='POST')
 
         # Make the request to Slack API
         with urllib.request.urlopen(req) as response:
@@ -40,7 +39,7 @@ def lambda_handler(event, context):
             # Check response from Slack
             if response.getcode() == 200:
                 logger.info("Message sent to Slack successfully.")
-                logger.info(response)
+                logger.info(response_body)
             else:
                 logger.error(
                     f"Error sending message to Slack: {response_body}")
