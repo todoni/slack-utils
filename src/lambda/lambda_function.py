@@ -9,6 +9,32 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 
+def post_response_message(text, channel):
+    url = 'https://slack.com/api/chat.postMessage'
+    headers = {
+        'Authorization': f"Bearer {os.environ['SLACK_BOT_TOKEN']}",
+        'Content-Type': 'application/x-www-form-urlencoded'
+    }
+
+    payload = {
+        'channel': channel,
+        'text': text,
+    }
+    payload_encoded = urllib.parse.urlencode(payload).encode('utf-8')
+
+    req = urllib.request.Request(
+        url, data=payload_encoded, headers=headers, method='POST')
+
+    with urllib.request.urlopen(req) as response:
+        response_body = response.read().decode('utf-8')
+
+        if response.getcode() == 200:
+            logger.info("Message sent to Slack successfully.")
+            logger.info(response_body)
+        else:
+            logger.error(f"Error sending message to Slack: {response_body}")
+
+
 def lambda_handler(event, context):
     try:
         logger.info(json.dumps(event))
@@ -17,30 +43,7 @@ def lambda_handler(event, context):
         decoded_body = urllib.parse.unquote(body)
         logger.info(decoded_body)
 
-        url = 'https://slack.com/api/chat.postMessage'
-        headers = {
-            'Authorization': f"Bearer {os.environ['SLACK_BOT_TOKEN']}",
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
-
-        payload = {
-            'channel': 'C04FL23CYNS',
-            'text': 'Hello from AWS Lambda!',
-        }
-        payload_encoded = urllib.parse.urlencode(payload).encode('utf-8')
-
-        req = urllib.request.Request(
-            url, data=payload_encoded, headers=headers, method='POST')
-
-        with urllib.request.urlopen(req) as response:
-            response_body = response.read().decode('utf-8')
-
-            if response.getcode() == 200:
-                logger.info("Message sent to Slack successfully.")
-                logger.info(response_body)
-            else:
-                logger.error(
-                    f"Error sending message to Slack: {response_body}")
+        post_response_message('Hello from AWS Lambda!', 'C04FL23CYNS')
 
     except Exception as e:
         logger.error(f"Error: {str(e)}")
