@@ -10,7 +10,7 @@
   },
   "title": {
     "type": "plain_text",
-    "text": "Today's Scrum!:love_letter:"
+    "text": "Today's Scrum!"
   },
   "blocks": [
     {
@@ -26,40 +26,40 @@
     {
       "type": "input",
       "element": {
-        "type": "checkboxes",
+        "type": "radio_buttons",
         "options": [
           {
             "text": {
               "type": "plain_text",
-              "text": "awful:exploding_head:"
+              "text": "awful :exploding_head:"
             },
             "value": "value-0"
           },
           {
             "text": {
               "type": "plain_text",
-              "text": "bad:pensive:"
+              "text": "bad :pensive:"
             },
             "value": "value-1"
           },
           {
             "text": {
               "type": "plain_text",
-              "text": "so-so:neutral_face:"
+              "text": "so-so :neutral_face:"
             },
             "value": "value-2"
           },
           {
             "text": {
               "type": "plain_text",
-              "text": "good:blush:"
+              "text": "good :blush:"
             },
             "value": "value-3"
           },
           {
             "text": {
               "type": "plain_text",
-              "text": "awesome:star-struck:"
+              "text": "awesome :star-struck:"
             },
             "value": "value-4"
           }
