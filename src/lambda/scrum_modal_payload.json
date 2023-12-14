@@ -2,26 +2,22 @@
   "type": "modal",
   "submit": {
     "type": "plain_text",
-    "text": "Submit",
-    "emoji": true
+    "text": "Submit"
   },
   "close": {
     "type": "plain_text",
-    "text": "Cancel",
-    "emoji": true
+    "text": "Cancel"
   },
   "title": {
     "type": "plain_text",
-    "text": "Today's Scrum!",
-    "emoji": true
+    "text": "Today's Scrum!:love_letter:"
   },
   "blocks": [
     {
       "type": "section",
       "text": {
         "type": "plain_text",
-        "text": ":wave: Hey David!\n\nWe'd love to hear from you how do you feel today and so on.",
-        "emoji": true
+        "text": ":wave: Hey David!\n\nWe'd love to hear from you how do you feel today and so on."
       }
     },
     {
@@ -35,40 +31,35 @@
           {
             "text": {
               "type": "plain_text",
-              "text": "awful",
-              "emoji": true
+              "text": "awful:exploding_head:"
             },
             "value": "value-0"
           },
           {
             "text": {
               "type": "plain_text",
-              "text": "bad",
-              "emoji": true
+              "text": "bad:pensive:"
             },
             "value": "value-1"
           },
           {
             "text": {
               "type": "plain_text",
-              "text": "so-so",
-              "emoji": true
+              "text": "so-so:neutral_face:"
             },
             "value": "value-2"
           },
           {
             "text": {
               "type": "plain_text",
-              "text": "good",
-              "emoji": true
+              "text": "good:blush:"
             },
             "value": "value-3"
           },
           {
             "text": {
               "type": "plain_text",
-              "text": "awesome",
-              "emoji": true
+              "text": "awesome:star-struck:"
             },
             "value": "value-4"
           }
@@ -77,8 +68,7 @@
       },
       "label": {
         "type": "plain_text",
-        "text": "1. How is your condition today?",
-        "emoji": true
+        "text": "1. How is your condition today?"
       }
     },
     {
@@ -90,8 +80,7 @@
       },
       "label": {
         "type": "plain_text",
-        "text": "2. What did you do since yesterday?",
-        "emoji": true
+        "text": "2. What did you do since yesterday?"
       }
     },
     {
@@ -103,8 +92,7 @@
       },
       "label": {
         "type": "plain_text",
-        "text": "3. What do you plan to do today?",
-        "emoji": true
+        "text": "3. What do you plan to do today?"
       }
     },
     {
@@ -116,8 +104,7 @@
       },
       "label": {
         "type": "plain_text",
-        "text": "4. Anything blocking your progress?",
-        "emoji": true
+        "text": "4. Anything blocking your progress?"
       }
     }
   ]
