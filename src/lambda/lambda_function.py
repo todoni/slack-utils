@@ -72,7 +72,8 @@ def lambda_handler(event, context):
         trigger_id = payload['trigger_id']
         view_file = open("scrum_modal_payload.json")
         view_json = view_file.read()
-        view_as_string = json.loads(view_json)
+        view_as_dict = json.loads(view_json)
+        view_as_string = json.dumps(view_as_dict)
 
         open_modal(trigger_id, view_as_string)
 
