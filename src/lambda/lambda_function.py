@@ -61,6 +61,30 @@ def open_modal(trigger_id, view):
             logger.error(f"Error sending message to Slack: {response_body}")
 
 
+def on_modal_submit(payload):
+    logger.info(json.dumps(payload))
+    callback_id = payload['callback_id']
+    if callback_id == "scrum-modal":
+        answers = payload['state']['values']
+        logger.info(json.dumps(answers))
+        first = "*1. How is your condition today?*\n"
+        second = "*2. What did you do since yesterday?*\n"
+        third = "*3. What do you plan to do today?*\n"
+        forth = "*4. Anything blocking your progress?*\n"
+
+        message_block = {
+            "blocks": [
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": first
+                    }
+                }
+            ]
+        }
+
+
 def lambda_handler(event, context):
     try:
         logger.info(json.dumps(event))
@@ -69,13 +93,19 @@ def lambda_handler(event, context):
         decoded_body = urllib.parse.unquote(body)
 
         payload = json.loads(decoded_body.split('payload=', 1)[1])
-        trigger_id = payload['trigger_id']
-        view_file = open("scrum_modal_payload.json")
-        view_json = view_file.read()
-        view_as_dict = json.loads(view_json)
-        view_as_string = json.dumps(view_as_dict)
+        event_type = payload['type']
 
-        open_modal(trigger_id, view_as_string)
+        if event_type == "block_actions":
+            action_id = payload['actions'][0]['value']
+            if action_id == "open_scrum_modal":
+                trigger_id = payload['trigger_id']
+                view_file = open("scrum_modal_payload.json")
+                view_json = view_file.read()
+                view_as_dict = json.loads(view_json)
+                view_as_string = json.dumps(view_as_dict)
+                open_modal(trigger_id, view_as_string)
+        elif event_type == "view_submission":
+            on_modal_submit(payload)
 
     except Exception as e:
         logger.error(f"Error: {str(e)}")
