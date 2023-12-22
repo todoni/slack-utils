@@ -63,14 +63,14 @@ def open_modal(trigger_id, view):
 
 def on_modal_submit(payload):
     logger.info(json.dumps(payload))
-    callback_id = payload['callback_id']
+    callback_id = payload['view']['callback_id']
     if callback_id == "scrum-modal":
-        answers = payload['state']['values']
+        answers = payload['view']['state']['values']
         logger.info(json.dumps(answers))
-        first = "*1. How is your condition today?*\n"
-        second = "*2. What did you do since yesterday?*\n"
-        third = "*3. What do you plan to do today?*\n"
-        forth = "*4. Anything blocking your progress?*\n"
+        first = "*1. How is your condition today?*\n" + answers[0] + '\n'
+        second = "*2. What did you do since yesterday?*\n" + answers[1] + '\n'
+        third = "*3. What do you plan to do today?*\n" + answers[2] + '\n'
+        forth = "*4. Anything blocking your progress?*\n" + answers[3] + '\n'
 
         message_block = {
             "blocks": [
@@ -78,7 +78,7 @@ def on_modal_submit(payload):
                     "type": "section",
                     "text": {
                         "type": "mrkdwn",
-                        "text": first
+                        "text": first + second + third + forth
                     }
                 }
             ]
