@@ -9,7 +9,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 
-def post_response_message(text, channel):
+def post_response_message(blocks, channel):
     url = 'https://slack.com/api/chat.postMessage'
     headers = {
         'Authorization': f"Bearer {os.environ['SLACK_BOT_TOKEN']}",
@@ -18,7 +18,7 @@ def post_response_message(text, channel):
 
     payload = {
         'channel': channel,
-        'text': text,
+        'blocks': blocks,
     }
     payload_encoded = urllib.parse.urlencode(payload).encode('utf-8')
 
@@ -67,10 +67,20 @@ def on_modal_submit(payload):
     if callback_id == "scrum-modal":
         answers = payload['view']['state']['values']
         logger.info(json.dumps(answers))
-        first = "*1. How is your condition today?*\n" + answers[0] + '\n'
-        second = "*2. What did you do since yesterday?*\n" + answers[1] + '\n'
-        third = "*3. What do you plan to do today?*\n" + answers[2] + '\n'
-        forth = "*4. Anything blocking your progress?*\n" + answers[3] + '\n'
+        answers = list(enumerate(answers.values()))
+        # logger.info("***************index**************")
+        # logger.info(indexes)
+        logger.info("***************answers**************")
+        logger.info(answers)
+        first = "*1. How is your condition today?*\n" + \
+            answers[0][1]['checkboxes-action']['selected_option']['text']['text'] + '\n'
+        logger.info("first")
+        second = "*2. What did you do since yesterday?*\n" + \
+            answers[1][1]['plain_text_input-action']['value'] + '\n'
+        third = "*3. What do you plan to do today?*\n" + \
+            answers[2][1]['plain_text_input-action']['value'] + '\n'
+        forth = "*4. Anything blocking your progress?*\n" + \
+            answers[3][1]['plain_text_input-action']['value'] + '\n'
 
         message_block = {
             "blocks": [
@@ -83,6 +93,33 @@ def on_modal_submit(payload):
                 }
             ]
         }
+
+        message_block_as_string = json.dumps(message_block)
+
+        url = 'https://slack.com/api/conversations.list'
+        headers = {
+            'Authorization': f"Bearer {os.environ['SLACK_BOT_TOKEN']}",
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+
+        req = urllib.request.Request(
+            url, headers=headers, method='GET')
+
+        with urllib.request.urlopen(req) as response:
+            response_body = response.read().decode('utf-8')
+
+        if response.getcode() == 200:
+            logger.info("Listed channel successfully.")
+            logger.info(response_body)
+        else:
+            logger.error(f"Error listing channels Slack: {response_body}")
+
+        data = json.loads(response_body)
+        channels = data['channels']
+        channel = list(
+            filter(lambda c: c["name"] == "random", channels))[0]
+        channel_id = channel["id"]
+        post_response_message(message_block_as_string, channel_id)
 
 
 def lambda_handler(event, context):
