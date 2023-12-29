@@ -147,8 +147,7 @@ def lambda_handler(event, context):
         logger.error(f"Error: {str(e)}")
 
     return {
-        'statusCode': 200,
-        'body': json.dumps('Lambda function executed successfully!')
+        'statusCode': 200
     }
 
 # Additional functions or classes can be defined below
