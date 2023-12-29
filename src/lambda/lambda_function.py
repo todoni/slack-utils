@@ -125,9 +125,8 @@ def lambda_handler(event, context):
     try:
         logger.info(json.dumps(event))
         body = base64.b64decode(event['body'])
-
-        decoded_body = urllib.parse.unquote(body)
-
+        body_str = body.decode('utf-8').replace('+', ' ')
+        decoded_body = urllib.parse.unquote(body_str)
         payload = json.loads(decoded_body.split('payload=', 1)[1])
         event_type = payload['type']
 
