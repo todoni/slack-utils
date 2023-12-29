@@ -82,20 +82,19 @@ def on_modal_submit(payload):
         forth = "*4. Anything blocking your progress?*\n" + \
             answers[3][1]['plain_text_input-action']['value'] + '\n'
 
-        message_block = {
-            "blocks": [
-                {
-                    "type": "section",
-                    "text": {
+        message_blocks = [
+            {
+                "type": "section",
+                "text": {
                         "type": "mrkdwn",
                         "text": first + second + third + forth
-                    }
                 }
-            ]
-        }
+            }
+        ]
 
-        message_block_as_string = json.dumps(message_block)
-
+        message_block_as_string = json.dumps(message_blocks)
+        logger.info(message_blocks)
+        logger.info(message_block_as_string)
         url = 'https://slack.com/api/conversations.list'
         headers = {
             'Authorization': f"Bearer {os.environ['SLACK_BOT_TOKEN']}",
