@@ -73,14 +73,14 @@ def on_modal_submit(payload):
         logger.info("***************answers**************")
         logger.info(answers)
         first = "*1. How is your condition today?*\n" + \
-            answers[0][1]['checkboxes-action']['selected_option']['text']['text'] + '\n'
+            answers[0][1]['checkboxes-action']['selected_option']['text']['text'] + "\n\n"
         logger.info("first")
         second = "*2. What did you do since yesterday?*\n" + \
-            answers[1][1]['plain_text_input-action']['value'] + '\n'
+            answers[1][1]['plain_text_input-action']['value'] + "\n\n"
         third = "*3. What do you plan to do today?*\n" + \
-            answers[2][1]['plain_text_input-action']['value'] + '\n'
+            answers[2][1]['plain_text_input-action']['value'] + "\n\n"
         forth = "*4. Anything blocking your progress?*\n" + \
-            answers[3][1]['plain_text_input-action']['value'] + '\n'
+            answers[3][1]['plain_text_input-action']['value'] + "\n\n"
 
         message_blocks = [
             {
