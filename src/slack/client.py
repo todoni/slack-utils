@@ -26,6 +26,6 @@ class slack_client:
         raise NotImplementedError(
             "This method should be implemented by subclasses")
 
-    def open_modal(self, payload):
+    def open_modal(self, trigger_id, view):
         raise NotImplementedError(
             "This method should be implemented by subclasses")
