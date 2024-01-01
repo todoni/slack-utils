@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 from ..constants.scrum import (SCRUM_INITIATE_FILE_NAME, TEST_CHANNEL_NAME,
                                TYPE_PUBLIC_CHANNEL_ONLY)
-from ..slack.api import slack_client
+from ..slack.client_sdk import client_sdk
 
 load_dotenv()
 
@@ -20,7 +20,7 @@ class scrum_bot:
         # self.token = token
         scrum_initiate_message_file = open(
             SCRUM_INITIATE_FILE_NAME)
-        self.__slack_client = slack_client(token)
+        self.__slack_client = client_sdk(token)
         self.channel_id = self.__slack_client.get_channel_id(
             TEST_CHANNEL_NAME, TYPE_PUBLIC_CHANNEL_ONLY)
         scrum_initiate_message_json = scrum_initiate_message_file.read()
@@ -31,13 +31,13 @@ class scrum_bot:
         member_ids = self.__slack_client.get_channel_member_ids(
             self.channel_id)
         for member_id in member_ids:
-            result = self.__slack_client.post_interactive_message(
+            result = self.__slack_client.post_thread_interactive(
                 channel=member_id, payload=self.scrum_initiate_message_payload)
 
-    def post_scrum_to_channel(self, payload):
-        payload['blocks'].pop()
-        payload_without_button = jsonify(payload)
-        self.slack.post_interactive_message(payload_without_button)
+    # def post_scrum_to_channel(self, payload):
+    #    payload['blocks'].pop()
+    #    payload_without_button = jsonify(payload)
+    #    self.slack.post_interactive_message(payload_without_button)
 
 
 if __name__ == '__main__':

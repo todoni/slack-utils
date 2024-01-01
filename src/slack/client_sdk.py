@@ -4,9 +4,12 @@ import os
 
 from slack_sdk import WebClient
 
+from .client import slack_client
 
-class slack_client:
+
+class client_sdk(slack_client):
     def __init__(self, token):
+        super().__init__(token)
         self.client = WebClient(token)
 
     def get_channel_id(self, channel_name, channel_types):
@@ -59,7 +62,7 @@ class slack_client:
         )
         return result
 
-    def post_interactive_message(self, channel, payload):
+    def post_thread_interactive(self, channel, payload):
         result = self.client.chat_postMessage(
             as_user=True, channel=channel, blocks=payload)
         return result
